@@ -8,5 +8,4 @@ const productos = [
     {id:06, tipo: "Hoodie", nombre: "Hoodie Rick", precio: 6000, foto: "./img/hoodie rick.jpg"},
     {id:07, tipo: "Hoodie", nombre: "Hoodie Peaky", precio: 5000, foto: "./img/hoodie peaky.jpg"},
     {id:08, tipo: "Hoodie", nombre: "Hoddie Breaking", precio: 5000, foto: "./img/hoodie breaking.jpg"},
-
 ];
