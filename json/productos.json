@@ -1,0 +1,56 @@
+
+[{
+    "id": 1,
+    "tipo": "Hoodie",
+    "nombre": "Hoodie Patches",
+    "precio": 6000,
+    "foto": "./img/hoodie patches.jpg"
+}, {
+    "id": 2,
+    "tipo": "Hoodie",
+    "nombre": "Hoodie Looney",
+    "precio": 6000,
+    "foto": "./img/hoodie looney.jpg"
+}, {
+    "id": 3,
+    "tipo": "Hoodie",
+    "nombre": "Hoodie Tiger",
+    "precio": 6000,
+    "foto": "./img/hoodie tiger.jpg"
+}, {
+    "id": 4,
+    "tipo": "Hoodie",
+    "nombre": "Hoodie Jerry",
+    "precio": 6000,
+    "foto": "./img/hoodie jerry.jpg"
+}, {
+    "id": 5,
+    "tipo": "Remera",
+    "nombre": "Remera fuji",
+    "precio": 3000,
+    "foto": "./img/remera fuji.jpg"
+}, {
+    "id": 6,
+    "tipo": "Remera",
+    "nombre": "Remera future",
+    "precio": 3000,
+    "foto": "./img/remera future.jpg"
+}, {
+    "id": 7,
+    "tipo": "Remera",
+    "nombre": "Remera holy",
+    "precio": 2500,
+    "foto": "./img/remera holy.jpg"
+}, {
+    "id": 8,
+    "tipo": "Remera",
+    "nombre": "Remera Gentleman",
+    "precio": 2500,
+    "foto": "./img/remera gentleman.jpg"
+}, {
+    "id": 9,
+    "tipo": "Remera",
+    "nombre": "Remera planet",
+    "precio": 3800,
+    "foto": "./img/remera planet.jpg"
+}]
