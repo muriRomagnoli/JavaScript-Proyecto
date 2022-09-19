@@ -6,31 +6,26 @@ let cantidadTotalCompra = carrito.length;
 
 $(document).ready(function () {
   $("#cantidad-compra").text(cantidadTotalCompra);
-
-  $("#btn-finalizar").on("click", function () {
-    Swal.fire({
-      title: "¿Seguro que queres finalizar tu compra?",
-      text: `Total a abonar: $${calcularTotalCarrito()}`,
-      showCancelButton: true,
-      confirmButtonColor: "#008f39",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si",
-      cancelButtonText: "No",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Compra confirmada", "¡Que lo disfrutes!", "success");
-        vaciarCarrito();
-      }
-    });
-  });
-
   $("#seleccion option[value='pordefecto']").attr("selected", true);
   $("#seleccion").on("change", ordenarProductos);
+
 
   $("#gastoTotal").html(`Total: $ ${calcularTotalCarrito()}`);
   obtenerJSON();
   renderizarProductos();
   mostrarEnTabla();
+
+  $("#btn-continuar").on("click", function (e) {
+    if (carrito.length == 0) {
+      e.preventDefault();
+      Swal.fire({
+        icon: "error",
+        title: "No hay ningun item en tu carrito",
+        text: "Agrega algun producto para continuar",
+        confirmButtonColor: "#444444",
+      });
+    }
+  });
 });
 
 function renderizarProductos() {
@@ -48,13 +43,12 @@ function renderizarProductos() {
 
     $(`#btn${producto.id}`).on("click", function () {
       agregarAlCarrito(producto);
-      $(`#btn${producto.id}`).fadeOut(200).fadeIn(200);
     });
   }
 }
 
 function obtenerJSON() {
-  $.getJSON("./json/productos.json", function (respuesta, estado) {
+  $.getJSON("../json/productos.json", function (respuesta, estado) {
     if (estado == "success") {
       productosJSON = respuesta;
       renderizarProductos();
@@ -97,11 +91,12 @@ function agregarAlCarrito(productoAgregado) {
   if (encontrado == undefined) {
     let productoEnCarrito = new ProductoCarrito(productoAgregado);
     carrito.push(productoEnCarrito);
-    Swal.fire(
-      "Nuevo producto agregado al carrito",
-      productoAgregado.nombre,
-      "success"
-    );
+    Swal.fire({
+      icon: "success",
+      title: "Nuevo producto agregado al carrito",
+      text: productoAgregado.nombre,
+      confirmButtonColor: "#444444",
+    });
 
     $("#tablabody")
       .append(`<tr id='fila${productoEnCarrito.id}' class='tabla-carrito'>
@@ -111,6 +106,7 @@ function agregarAlCarrito(productoAgregado) {
                             <td><button class='btn btn-light' id="btn-eliminar-${productoEnCarrito.id}">🗑️</button></td>
                             </tr>`);
   } else {
+
     let posicion = carrito.findIndex((p) => p.id == productoAgregado.id);
     carrito[posicion].cantidad += 1;
     $(`#${productoAgregado.id}`).html(carrito[posicion].cantidad);
@@ -150,14 +146,6 @@ function calcularTotalCarrito() {
   $("#montoTotalCompra").text(total);
   $("#cantidad-compra").text(carrito.length);
   return total;
-}
-
-function vaciarCarrito() {
-  $("#gastoTotal").text("Total: $0");
-  $("#cantidad-compra").text("0");
-  $(".tabla-carrito").remove();
-  localStorage.clear();
-  carrito = [];
 }
 
 function cargarCarrito() {
